@@ -12,27 +12,27 @@
         android:id="@+id/results"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:autofillHints=""
         android:fontFamily="@font/orbitron_bold"
         android:hint="@string/btn_0"
         android:inputType="number|text|numberDecimal"
         android:text="@string/text_default"
         android:textAlignment="textEnd"
-        android:textSize="@dimen/result_window_font_size"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintWidth_percent="0.85" />
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintWidth_percent="0.85"
+        android:autofillHints="" />
 
     <LinearLayout
         android:id="@+id/layout_main_buttons"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintDimensionRatio="5"
+        app:layout_constraintDimensionRatio="15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/results"
@@ -44,6 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:backgroundTint="#502222"
             android:text="@string/btn_C" />
 
         <Button
@@ -52,7 +53,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/btn_mem" />
+            android:text="@string/btn_mem"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button_insert"
@@ -60,7 +62,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/btn_ins" />
+            android:text="@string/btn_ins"
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -68,7 +71,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintDimensionRatio="5"
+        app:layout_constraintDimensionRatio="12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_main_buttons"
@@ -122,7 +125,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        app:layout_constraintDimensionRatio="5"
+        app:layout_constraintDimensionRatio="12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_numbers_1"
@@ -174,7 +177,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintDimensionRatio="5"
+        app:layout_constraintDimensionRatio="12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_numbers_2"
@@ -218,8 +221,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/btn_xx"
-            android:textSize="@dimen/pow_sign_text_size" />
+            android:text="@string/btn_xx" />
     </LinearLayout>
 
     <LinearLayout
@@ -227,7 +229,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintDimensionRatio="5"
+        app:layout_constraintDimensionRatio="12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_numbers_3"
@@ -247,6 +249,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:backgroundTint="#FF504545"
             android:text="@string/btn_dot" />
 
         <Button

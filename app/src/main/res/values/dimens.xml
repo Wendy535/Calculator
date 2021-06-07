@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="result_window_font_size">46sp</dimen>
+    <dimen name="button_text_size">24sp</dimen>
+    <dimen name="pow_sign_text_size">18sp</dimen>
+</resources>
