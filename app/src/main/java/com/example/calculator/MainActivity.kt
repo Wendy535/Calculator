@@ -31,15 +31,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonRoot: Button
     private lateinit var buttonInvolute: Button
 
-    private val isEmpty = ""
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         textResult = findViewById(R.id.results)
-        textResult.setText(isEmpty)
-        var calculations: Calculations
+        textResult.setText("")
 
         setNumberButtons()
         setMainButtons()
