@@ -1,18 +1,22 @@
 package com.example.calculator
 
-import android.view.View
-import android.widget.EditText
-import kotlin.math.sqrt
 import kotlin.math.pow
+import kotlin.math.roundToInt
 
 object Calculations {
+
+    private const val EMPTY_STRING = ""
+    private const val PLUS = "addition"
+    private const val MINUS = "decrease"
+    private const val MULT = "multiply"
+    private const val DIVIDE = "division"
+    private const val ROOT = "root"
+    private const val POWER = "power"
 
     private var currentEquation = ""
     private var currentResult = ""
     private var inMemory = ""
     private var numberArray: ArrayList<String> = ArrayList()
-    private var isEmpty = ""
-    private var operation = ""
 
     fun addElement(item: String): String {
         currentEquation += item
@@ -33,60 +37,102 @@ object Calculations {
     }
 
     fun plus() {
-        if (currentEquation != isEmpty) {
+        if (currentEquation != EMPTY_STRING) {
             numberArray.add(currentEquation)
-            currentEquation = isEmpty
-            operation = "addition"
+            numberArray.add(PLUS)
+            currentEquation = EMPTY_STRING
         }
     }
 
     fun minus() {
-        if (currentEquation != isEmpty) {
+        if (currentEquation != EMPTY_STRING) {
             numberArray.add(currentEquation)
-            currentEquation = isEmpty
-            operation = "decrease"
+            numberArray.add(MINUS)
+            currentEquation = EMPTY_STRING
         }
     }
 
     fun mult() {
-        if (currentEquation != isEmpty) {
+        if (currentEquation != EMPTY_STRING) {
             numberArray.add(currentEquation)
-            currentEquation = isEmpty
-            operation = "multiply"
+            numberArray.add(MULT)
+            currentEquation = EMPTY_STRING
         }
     }
 
     fun divide() {
-        if (currentEquation != isEmpty) {
+        if (currentEquation != EMPTY_STRING) {
             numberArray.add(currentEquation)
-            currentEquation = isEmpty
-            operation = "division"
+            numberArray.add(DIVIDE)
+            currentEquation = EMPTY_STRING
         }
     }
 
     fun root() {
-            operation = "root"
-    }
-
-    fun power() {
-        if (currentEquation != isEmpty) {
+        if (currentEquation != EMPTY_STRING) {
             numberArray.add(currentEquation)
-            currentEquation = isEmpty
-            operation = "power"
+            numberArray.add(ROOT)
+            currentEquation = EMPTY_STRING
         }
     }
 
-    fun calculate(): String {
-        currentResult = isEmpty
-        if (currentEquation != isEmpty) {
+    fun power() {
+        if (currentEquation != EMPTY_STRING) {
             numberArray.add(currentEquation)
-            when (operation) {
-                "addition" -> currentResult = (numberArray[0].toDouble() + numberArray[1].toDouble()).toString()
-                "decrease" -> currentResult = (numberArray[0].toDouble() - numberArray[1].toDouble()).toString()
-                "multiply" -> currentResult = (numberArray[0].toDouble() * numberArray[1].toDouble()).toString()
-                "division" -> currentResult = (numberArray[0].toDouble() / numberArray[1].toDouble()).toString()
-                "root" -> currentResult = (sqrt(numberArray[0].toDouble()).toString())
-                "power" -> currentResult = (numberArray[0].toDouble().pow(numberArray[1].toDouble()).toString())
+            numberArray.add(POWER)
+            currentEquation = EMPTY_STRING
+        }
+    }
+
+    private fun calcPlus(x: Double, y: Double): String {
+        return (x+y).toString()
+    }
+
+    private fun calcMinus(x: Double, y: Double): String {
+        return (x - y).toString()
+    }
+
+    private fun calcMult (x: Double, y: Double) : String {
+        return (x * y).toString()
+
+    }
+
+    private fun calcDivide (x: Double, y: Double) : String {
+        return (x/y).toString()
+    }
+
+    private fun calcRoot (x: Double, y: Double) : String {
+        return x.pow(1/y).toString()
+    }
+
+    private fun calcPower(x: Double, y: Double) : String {
+        return x.pow(y).toString()
+    }
+
+    fun calculate(): String {
+        currentResult = numberArray[0]
+        if (currentEquation != EMPTY_STRING) {
+            numberArray.add(currentEquation)
+        }
+
+        for (x in 0 until numberArray.size) {
+            when (numberArray[x]) {
+                PLUS -> currentResult = calcPlus(currentResult.toDouble(), numberArray[x + 1].toDouble())
+                MINUS -> currentResult = calcMinus(currentResult.toDouble(), numberArray[x + 1].toDouble())
+                MULT -> currentResult = calcMult(currentResult.toDouble(), numberArray[x + 1].toDouble())
+                DIVIDE -> currentResult = calcDivide(currentResult.toDouble(), numberArray[x + 1].toDouble())
+                ROOT -> currentResult = calcRoot(currentResult.toDouble(), numberArray[x + 1].toDouble())
+                POWER -> currentResult = calcPower(currentResult.toDouble(), numberArray[x + 1].toDouble())
+            }
+        }
+        val text = currentResult.substringAfter('.')
+        for (x in text) {
+            if (x == '0') {
+                currentResult = currentResult.substringBefore('.')
+            } else {
+                if (text.length > 10) {
+                    currentResult = currentResult.toDouble().roundToInt().toString()
+                }
             }
         }
         numberArray.clear()
